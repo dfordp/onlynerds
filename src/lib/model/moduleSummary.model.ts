@@ -12,15 +12,6 @@ const moduleSummarySchema = new mongoose.Schema({
         ref: 'Module',
         required : true,
     },
-    media : [{
-        type: String, 
-        validate: {
-            validator: function(v: string) {
-                return /^(https?:\/\/)?.+\..+/.test(v);
-            },
-            message: 'Please enter a valid URL'
-        }
-    }],
     summary : {
         type: String,
         required: true,

@@ -7,6 +7,16 @@ const moduleSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    course_id : {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Course',
+        required : true,
+    },   
+    index : {
+        type: Number,
+        required: true,
+        default : 1        
+    },
     name : {
         type: String,
         required: true,
@@ -15,6 +25,15 @@ const moduleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    media : [{
+        type: String, 
+        validate: {
+            validator: function(v: string) {
+                return /^(https?:\/\/)?.+\..+/.test(v);
+            },
+            message: 'Please enter a valid URL'
+        }
+    }], 
 }, { 
     timestamps: true,
 });
