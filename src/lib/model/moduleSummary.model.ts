@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const moduleSchema = new mongoose.Schema({
+const moduleSummarySchema = new mongoose.Schema({
     _id: {
         type: String,
         required: true,
@@ -30,9 +30,7 @@ const moduleSchema = new mongoose.Schema({
 });
 
 
-moduleSchema.index({ course_id: 1 });
-moduleSchema.index({ course_id: 1, name: 1 });    
 
-const Module = mongoose.models.Module || mongoose.model("Module", moduleSchema);
+const ModuleSummary = mongoose.models.ModuleSummary || mongoose.model("ModuleSummary", moduleSummarySchema);
 
-export default Module;
+export default ModuleSummary;

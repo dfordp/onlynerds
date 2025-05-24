@@ -9,6 +9,11 @@ const courseRankingSchema = new mongoose.Schema({
     },
     creator_id : {
         type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User',
+        required : true,
+    },
+    course_id : {
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Course',
         required : true,
     },
@@ -30,6 +35,8 @@ const courseRankingSchema = new mongoose.Schema({
 }, { 
     timestamps: true,
 });
+
+
 
 const CourseRanking = mongoose.models.CourseRanking || mongoose.model("CourseRanking", courseRankingSchema);
 

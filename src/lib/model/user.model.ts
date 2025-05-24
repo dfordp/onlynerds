@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         maxLength: [500, 'Bio cannot exceed 500 characters']
     },
     avatar: {
-        type: String, // Changed from URL to String
+        type: String, 
         validate: {
             validator: function(v: string) {
                 return /^(https?:\/\/)?.+\..+/.test(v);

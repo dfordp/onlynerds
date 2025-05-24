@@ -19,6 +19,15 @@ const courseSchema = new mongoose.Schema({
         trim: true,
         maxLength: [500, 'Bio cannot exceed 500 characters']
     },
+    background: {
+        type: String, // Changed from URL to String
+        validate: {
+            validator: function(v: string) {
+                return /^(https?:\/\/)?.+\..+/.test(v);
+            },
+            message: 'Please enter a valid URL'
+        }
+    },
     creator_id : {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User' 
