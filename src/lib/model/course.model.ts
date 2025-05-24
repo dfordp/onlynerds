@@ -52,6 +52,13 @@ const courseSchema = new mongoose.Schema({
     timestamps: true,
 });
 
+courseSchema.index({ categories: 1 });  
+courseSchema.index({ difficulty: 1 }); 
+courseSchema.index({ isPublic: 1 });    
+courseSchema.index({ creator_id: 1 });
+courseSchema.index({ isOriginal: 1, forkedFrom: 1 }); 
+courseSchema.index({ isPublic: 1, categories: 1 }); 
+
 const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);
 
 export default Course;
