@@ -1,44 +1,79 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    id : {
-        type : String,
-        required : true,
+    _id: {
+        type: String,
+        required: true,
+        unique: true,
     },
     name: {
         type: String,
         required: true,
+        trim: true,
+        minLength: [2, 'Name must be at least 2 characters'],
+        maxLength: [50, 'Name cannot exceed 50 characters']
     },
     bio: {
         type: String,
-        required: false,
+        trim: true,
+        maxLength: [500, 'Bio cannot exceed 500 characters']
     },
-    avatar : {
-        type : URL,
-        required : false,
+    avatar: {
+        type: String, // Changed from URL to String
+        validate: {
+            validator: function(v: string) {
+                return /^(https?:\/\/)?.+\..+/.test(v);
+            },
+            message: 'Please enter a valid URL'
+        }
     },
-    email : {
-        type : String,
-        required : false,
+    email: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        validate: {
+            validator: function(v) {
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+            },
+            message: 'Please enter a valid email'
+        }
     },
-    socials : {
-        github : {
-            type : URL,
-            required : false,
+    socials: {
+        github: {
+            type: String,
+            validate: {
+                validator: function(v: string) {
+                    return !v || v.startsWith('https://github.com/');
+                },
+                message: 'Invalid GitHub URL'
+            }
         },
-        x : {
-            type : URL,
-            required : false,
+        x: {
+            type: String,
+            validate: {
+                validator: function(v: string) {
+                    return !v || v.startsWith('https://x.com/');
+                },
+                message: 'Invalid X/Twitter URL'
+            }
         },
-        linkedin : {
-            type : URL,
-            required : false,
+        linkedin: {
+            type: String,
+            validate: {
+                validator: function(v: string) {
+                    return !v || v.startsWith('https://linkedin.com/');
+                },
+                message: 'Invalid LinkedIn URL'
+            }
         }
     }
-}, { timestamps: true });
+}, { 
+    timestamps: true,
+});
+
+userSchema.index({ id: 1 });
+userSchema.index({ email: 1 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;
-
-
