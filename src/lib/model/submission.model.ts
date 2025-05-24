@@ -12,9 +12,19 @@ const submissionSchema = new mongoose.Schema({
         ref: 'Module',
         required : true,
     },
-    summary : {
+    type : {
         type: String,
+        enum : ["project", "challenge"],
         required: true,
+    },
+    projectSubmission : {
+        type: String, 
+        validate: {
+            validator: function(v: string) {
+                return /^(https?:\/\/)?.+\..+/.test(v);
+            },
+            message: 'Please enter a valid URL'
+        }
     },
 }, { 
     timestamps: true,
