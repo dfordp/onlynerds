@@ -7,13 +7,9 @@ const moduleSummarySchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    name : {
-        type: String,
-        required: true,
-    },
-    course_id : {
+    module_id : {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Course',
+        ref: 'Module',
         required : true,
     },
     media : [{
@@ -24,7 +20,11 @@ const moduleSummarySchema = new mongoose.Schema({
             },
             message: 'Please enter a valid URL'
         }
-    }]
+    }],
+    summary : {
+        type: String,
+        required: true,
+    },
 }, { 
     timestamps: true,
 });

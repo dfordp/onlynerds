@@ -11,20 +11,10 @@ const moduleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    course_id : {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Course',
-        required : true,
+    content : {
+        type: String,
+        required: true,
     },
-    media : [{
-        type: String, 
-        validate: {
-            validator: function(v: string) {
-                return /^(https?:\/\/)?.+\..+/.test(v);
-            },
-            message: 'Please enter a valid URL'
-        }
-    }]
 }, { 
     timestamps: true,
 });
