@@ -67,8 +67,8 @@ A **decentralized AI-native LMS** where:
 - [x] Learner dashboard to consume course, view milestones
 - [x] LLM integration for AI agent generation + eval
 - [x] Dynamic NFT minting (simulated)
-- [ ] DAO-based curation interface (mocked)
-- [ ] Gig engine + skill matching (planned post-hack)
+- [x] DAO-based curation interface (mocked)
+- [x] Gig engine + skill matching (planned post-hack)
 
 ---
 
